@@ -1,8 +1,16 @@
-import { cn } from "lib/utils";
+// import { cn } from "lib/utils";
 import { useRef, useState } from "react";
 import { motion } from "motion/react";
 import { IconUpload } from "@tabler/icons-react";
 import { useDropzone } from "react-dropzone";
+
+import clsx from "clsx";
+import type { ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge";
+
+function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
 
 const mainVariant = {
   initial: {
