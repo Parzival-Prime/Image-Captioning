@@ -43,7 +43,6 @@ function App() {
   return (
     <main className="min-h-screen max-h-[100rem] w-full bg-black text-gray-500 p-5 flex flex-col justify-center items-center">
       <h1 className="min-h-15 p-2 pb-4 max-h-60 mb-5 text-5xl font-bold bg-linear-to-r from-red-500 to-violet-700 bg-clip-text text-transparent font-michroma
-      border border-amber-50
       ">
         Caption Your Images
       </h1>
