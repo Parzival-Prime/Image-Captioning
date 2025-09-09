@@ -9,7 +9,8 @@ type ButtonStatusStates = "blocked" | "unblocked" | "generating";
 function App() {
   // console.log(import.meta.env.VITE_API_URL)
   const [image, setImage] = useState<FormData>();
-  const [buttonStatus, setButtonStatus] = useState<ButtonStatusStates>("blocked");
+  const [buttonStatus, setButtonStatus] =
+    useState<ButtonStatusStates>("blocked");
   const [captionStatus, setCaptionStatus] = useState<boolean>(false);
   const [caption, setCaption] = useState<string>("Caption will be shown here");
 
@@ -25,41 +26,59 @@ function App() {
 
   const generateCaption = async () => {
     setButtonStatus("generating");
-    const res = await fetch(`${import.meta.env.VITE_API_URL}/generate-caption`, {
-      method: "POST",
-      headers: {
-        accept: "application/json",
-      },
-      body: image,
-    });
+    const res = await fetch(
+      `${import.meta.env.VITE_API_URL}/generate-caption`,
+      {
+        method: "POST",
+        headers: {
+          accept: "application/json",
+        },
+        body: image,
+      }
+    );
 
     const text = await res.json();
-    
-    setCaption(capitalize(text['caption']));
+
+    setCaption(capitalize(text["caption"]));
     setButtonStatus("blocked");
     setCaptionStatus(true);
   };
 
   return (
     <main className="min-h-screen max-h-[100rem] w-full bg-black text-gray-500 p-5 flex flex-col justify-center items-center">
-      <h1 className="min-h-15 p-2 pb-4 max-h-60 mb-5 text-5xl font-bold bg-linear-to-r from-red-500 to-violet-700 bg-clip-text text-transparent font-michroma
-      ">
+      <h1
+        className="min-h-15 p-2 pb-4 max-h-60 mb-5 text-5xl font-bold bg-linear-to-r from-red-500 to-violet-700 bg-clip-text text-transparent font-michroma
+      "
+      >
         Caption Your Images
       </h1>
-      <div className="min-h-[70%] min-w-full border m-10 rounded-2xl flex flex-col gap-5">
-        <div className="">
+
+      <div className="min-h-[70%] w-full sm:w-[90%] md:w-[40rem] min-w-[18rem] border m-4 sm:m-6 md:m-10 rounded-2xl flex flex-col gap-5">
+        <div>
           <FileUpload onChange={handleFileUpload} />
         </div>
+
         <div className="flex justify-center h-8">
           <button
             onClick={() => generateCaption()}
-            className={`${buttonStatus == "blocked" || buttonStatus === "generating" ? 'text-neutral-500' : 'text-neutral-300'} bg-neutral-800 border-gray-800 px-4 rounded-sm`}
-            disabled={buttonStatus === "blocked" || buttonStatus === "generating" ? true : false}
+            className={`${
+              buttonStatus === "blocked" || buttonStatus === "generating"
+                ? "text-neutral-500"
+                : "text-neutral-300"
+            } bg-neutral-800 border-gray-800 px-4 rounded-sm`}
+            disabled={
+              buttonStatus === "blocked" || buttonStatus === "generating"
+            }
           >
-            {buttonStatus === 'generating' ? 'Generating...' : 'Generate'}
+            {buttonStatus === "generating" ? "Generating..." : "Generate"}
           </button>
         </div>
-        <div className={`text-xl h-25 w-full px-7 pt-4 rounded-xl ${captionStatus ? 'text-neutral-300': 'text-neutral-600'}`}>
+
+        <div
+          className={`text-xl min-h-[6rem] w-full px-4 sm:px-7 pt-4 rounded-xl ${
+            captionStatus ? "text-neutral-300" : "text-neutral-600"
+          }`}
+        >
           {caption}
         </div>
       </div>
