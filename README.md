@@ -96,21 +96,21 @@ flowchart TD
 
     A[Start Project] --> B[Use Flickr8k Dataset]
     B --> C[InceptionNet + LSTM Architecture]
-    C --> D[Performance very poor: captions not meaningful]
+    C --> D[Performance very poor - captions not meaningful]
 
-    D --> E[Hyperparameter tuning<br>(epochs, LR, optimizer, batch size)]
+    D --> E[Hyperparameter tuning: epochs, LR, optimizer, batch size]
     E --> F[No major improvement]
 
-    F --> G[Changed Backbone to EfficientNet<br>+ Feature Extraction on the fly]
+    F --> G[Changed Backbone to EfficientNet with on-the-fly feature extraction]
     G --> H[Slight performance improvement]
 
-    H --> I[Added Bahdanau Attention + Teacher Forcing]
-    I --> J[Validation Accuracy ↑ from 8% → 15%]
+    H --> I[Added Bahdanau Attention with Teacher Forcing]
+    I --> J[Validation Accuracy increased from 8% to 15%]
 
-    J --> K[Replaced LSTM Decoder with Transformer Decoder<br>(Inspired by Attention is All You Need)]
-    K --> L[Validation Accuracy ↑ to 40%<br>Captions made sense but not strongly image-related]
+    J --> K[Replaced LSTM Decoder with Transformer Decoder - Attention is All You Need]
+    K --> L[Validation Accuracy increased to 40%. Captions made sense but not strongly image-related]
 
-    L --> M[Scaled Dataset → Flickr30k]
+    L --> M[Scaled Dataset to Flickr30k]
     M --> N[Minor improvement]
 
     N --> O[Tried CLIP ViT as feature extractor]
@@ -118,9 +118,9 @@ flowchart TD
 
     P --> Q[Final Setup]
     Q --> R[EfficientNet Backbone + Transformer Decoder]
-    R --> S[Currently experimenting with hyperparameters<br>especially Decoder size and parameters]
+    R --> S[Currently experimenting with hyperparameters. Focus on Decoder size and parameters]
 
-    style A fill:#3e8,stroke:#333,stroke-width:2px
+    style A fill:#3e8,stroke:#333,stroke-width:2px,color:#fff
     style Q fill:#6cf,stroke:#333,stroke-width:2px
     style S fill:#fc6,stroke:#333,stroke-width:2px
 ```
